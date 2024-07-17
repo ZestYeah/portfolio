@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Portfolio</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: black;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        #vanta-bg {
+            width: 80%;
+            height: 80%;
+            border-radius: 50%;
+        }
+
+        .content {
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            z-index: 1;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            max-width: 40%;
+        }
+
+        .content h1 {
+            margin-bottom: 10px;
+        }
+
+        .content img {
+            width: 150px; 
+            height: 150px;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(20, 40, 80, 0.5);
+            border: 5px dashed #032B44;
+        }
+        
+        .conten {
+            position: absolute;
+            top: 30%;
+            right: 10%;
+            z-index: 1;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            max-width: 40%;
+            overflow-y: auto;
+			max-height: 60vh; /* adjust the height to your liking */
+    		padding-bottom: 20px;
+        }
+
+        .conten h1 {
+            margin-bottom: 10px;
+        }
+
+        .conten p {
+            line-height: 1.6;
+        }
+        .image-card {
+            position: relative;
+            width: 200px;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 10px;
+            //box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 10px rgb(46, 164, 109);
+            transform-style: preserve-3d;
+            will-change: transform;
+            display: inline-block; /* added */
+            vertical-align: top; /* added */
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .image-text { /* added */
+            display: inline-block; /* added */
+            vertical-align: top; /* added */
+            margin-left: 20px; /* added */
+            max-width: 40%; /* added */
+        }
+        #live2dcanvas {
+  position: fixed!important;
+  opacity: 0.7!important;
+  bottom: 12px!important;
+  left: 180px!important;
+  z-index: 99999!important;
+  pointer-events: none!important;
+}
+
+       .loading-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black; 
+  z-index: 9999; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+        .loading-bar {
+            width: 50%;
+            height: 20px;
+            background-color: #333;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .loading-bar-inner {
+            width: 0%;
+            height: 100%;
+            background-color: #fff;
+            transition: width 0.5s ease-out;
+        }
+
+        .loading-percentage {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-container">
+        <div class="loading-bar">
+            <div class="loading-bar-inner"></div>
+        </div>
+        <div class="loading-percentage">
+            <span id="loading-percentage-text">0%</span>
+        </div>
+    </div>
+    <div id="vanta-bg"></div>
+    <div class="content">
+        <h1>Welcome to My Portfolio Webpage</h1>
+        <img src="https://blob.sololearn.com/avatars/683c8893-3f3d-4019-a7bc-0b8f4b444c2e.jpg" alt="Profile Picture">
+    </div>
+    <div class="conten">
+        <h1>This Webpage is to showcase my humble skills enjoy ^-^</h1>
+        <div class="image-text">
+            <p>With a strong background in electronics, I possess the technical prowess to navigate complex circuits and troubleshoot with ease. Whether it's designing circuit boards or analyzing intricate wiring diagrams, ensuring optimal functionality and performance, I am confident in my ability to tackle any electronic challenge that comes my way.</p>
+        </div>
+        <div class="image-card">
+            <img src="https://media.discordapp.net/attachments/1154846636179198084/1262765032865923144/937d57a4.png?ex=6697c914&is=66967794&hm=7b796fdb214cc83ae50a3a5428be1ddba64af464cf7929f0db4f511e327b8672&=&format=webp&quality=lossless&width=160&height=337" alt="Image">
+        </div>
+         <div class="image-text">
+            <p>My passion for building web and mobile apps has allowed me to create user-friendly interfaces and intuitive experiences. Leveraging my expertise in programming languages like HTML, CSS, and JavaScript, I have developed a wide range of applications that seamlessly blend aesthetics with functionality. I deliver cutting-edge solutions that surpass user expectations, staying updated with the latest industry trends.</p>
+        </div>
+        <div class="image-card">
+            <img src="https://media.discordapp.net/attachments/1128358231702515753/1262882311893024872/faf0bb7c-a1d9-4e84-a54f-571d572a0404.png_1_1.jpg?ex=6698df0e&is=66978d8e&hm=7c74ca984a39cc6cf6d34c32ddf8d75d7e05044c0156d6f5b0d3f8b169207873&=&format=webp&width=207&height=369" alt="Image">
+        </div>
+        <div class="image-text">
+            <p>My expertise in game development brings captivating stories to life through immersive gameplay. From conceptualizing game concepts to designing engaging levels and implementing complex mechanics, my creativity, attention to detail, and understanding of player psychology create unforgettable gaming experiences that resonate with audiences.</p>
+        </div>
+        <div class="image-card">
+            <img src="https://media.discordapp.net/attachments/1154846636179198084/1262765033952252036/imagineAi-1.jpeg.png?ex=6697c915&is=66967795&hm=5fa4be8e155240206f0f5fe37dc6bfd90171467b5fdce8efe84f375537ca5681&=&format=webp&quality=lossless&width=189&height=337" alt="Image">
+        </div>
+        <div class="image-text">
+            <p>With a comprehensive understanding of servers, I optimize performance and ensure seamless connectivity. Proficient in server administration, network protocols, and security measures, I configure servers, manage databases, and implement efficient data storage solutions for robust and scalable architectures, guaranteeing reliable and efficient server operations.</p>
+        </div>
+        <div class="image-card">
+            <img src="https://media.discordapp.net/attachments/1154846636179198084/1262765033440415784/imagineAi.jpeg_1.png?ex=6697c915&is=66967795&hm=42ddd99c2a9fb8cf70e7cb0ab4038ff502ca951ba7079644e6403fc3ac151f8e&=&format=webp&quality=lossless&width=189&height=337" alt="Image">
+        </div>
+
+            <p>Above all, I am a dedicated and versatile professional, ready to tackle any challenge and contribute to the success of any project. I approach every task with enthusiasm and a strong work ethic, ensuring that deadlines are met and goals are achieved. My ability to adapt to different environments and collaborate effectively with diverse teams allows me to thrive in dynamic work settings. With a passion for continuous learning and growth, I am constantly seeking new opportunities to expand my skill set and make a meaningful impact in thefield.</p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.21/vanta.globe.min.js"></script>
+    <script src="https://html.cveoy.top/live2dw/lib/L2Dwidget.min.js"></script>
+    <script>
+        VANTA.GLOBE({
+            el: "#vanta-bg",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0x0077be,
+            color2: 0x000000,
+            backgroundColor: 0x000000,
+           size: 1.00,
+            points: 15.00,
+            maxDistance: 20.00,
+            spacing: 15.00,
+            texture: 'https://threejs.org/examples/textures/land_ocean_ice_cloud_2048.jpg' // High-quality Earth texture
+        });
+       
+               L2Dwidget.init({
+            "pluginRootPath": "https://html.cveoy.top/live2dw/",
+            "pluginJsPath": "https://html.cveoy.top/live2dw/lib/",
+            "pluginModelPath": "https://html.cveoy.top/live2dw/assets/",
+            "model": {
+                "jsonPath": "https://html.cveoy.top/live2dw/assets/koharu.model.json"
+            },
+            "display": {
+                "position": "left",
+                "width": 50,
+                "height": 100
+            }
+        });
+        
+const cards = document.querySelectorAll(".image-card");
+const THRESHOLD = 5;
+
+function handleHover(e) {
+  const { clientX, clientY, currentTarget } = e;
+  const { clientWidth, clientHeight, offsetLeft, offsetTop } = currentTarget;
+
+  const horizontal = (clientX - offsetLeft) / clientWidth;
+  const vertical = (clientY - offsetTop) / clientHeight;
+
+  const rotateX = (THRESHOLD / 0.5 - horizontal * THRESHOLD).toFixed(2);
+  const rotateY = (vertical * THRESHOLD - THRESHOLD / 0.5).toFixed(2);
+
+  currentTarget.style.transform = `perspective(${clientWidth}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+}
+
+function resetStyles(e) {
+  e.currentTarget.style.transform = `perspective(${e.currentTarget.clientWidth}px) rotateX(0deg) rotateY(0deg)`;
+}
+
+cards.forEach(card => {
+  card.addEventListener("mousemove", handleHover);
+  card.addEventListener("mouseleave", resetStyles);
+});
+
+// Add this JavaScript code for the loading animation
+let loadingPercentage = 0;
+const loadingContainer = document.querySelector('.loading-container');
+const loadingBarInner = document.querySelector('.loading-bar-inner');
+const loadingPercentageText = document.querySelector('#loading-percentage-text');
+
+function updateLoadingPercentage() {
+  if (loadingPercentage < 100) {
+    loadingPercentage += 1;
+    loadingBarInner.style.width = `${loadingPercentage}%`;
+    loadingPercentageText.textContent = `${loadingPercentage}%`;
+  } else {
+    loadingContainer.style.display = 'none';
+    document.body.style.overflow = 'auto'; // Show the webpage
+  }
+}
+
+// Simulate loading process (replace with your actual loading logic)
+setInterval(updateLoadingPercentage, 30);
+    </script>
+</body>
+</html>
